@@ -26,8 +26,8 @@ class FlavorController(wsgi.Controller):
     def show(self, req, tenant_id, id):
         """Return a single flavor."""
         context = req.environ[wsgi.CONTEXT_KEY]
-        self._validate_flavor_id(id)
-        flavor = models.Flavor(context=context, flavor_id=int(id))
+        # self._validate_flavor_id(id)
+        flavor = models.Flavor(context=context, flavor_id=id)
         # Pass in the request to build accurate links.
         return wsgi.Result(views.FlavorView(flavor, req).data(), 200)
 
@@ -37,9 +37,9 @@ class FlavorController(wsgi.Controller):
         flavors = models.Flavors(context=context)
         return wsgi.Result(views.FlavorsView(flavors, req).data(), 200)
 
-    def _validate_flavor_id(self, id):
-        try:
-            if int(id) != float(id):
-                raise exception.NotFound(uuid=id)
-        except ValueError:
-            raise exception.NotFound(uuid=id)
+#    def _validate_flavor_id(self, id):
+#       try:
+#            if int(id) != float(id):
+#                raise exception.NotFound(uuid=id)
+#        except ValueError:
+#            raise exception.NotFound(uuid=id)
