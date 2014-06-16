@@ -26,14 +26,10 @@ url_ref = {
 
 flavorref = {
     'oneOf': [
-        url_ref,
         {
             "type": "string",
-            "maxLength": 5,
-            "pattern": "[0-9]+"
-        },
-        {
-            "type": "integer"
+            "minLength : 8,
+            "maxLength": 64,
         }]
 }
 
